@@ -27,9 +27,9 @@ class ConversationRepository {
         }
     }
 
-    async updateConversation(conversationId, data) { 
+    async updateConversation(conversationId, data) {
         try {
-           
+
             const conversation = await Conversation.update(data, {
                 where: {
                     conversationId: conversationId
@@ -51,16 +51,20 @@ class ConversationRepository {
             throw { error };
         }
     }
-    async getAllConversation(chatbotId) { // filter can be a empty  also
+    async getAllConversation(chatbotId, page, limit) {
         try {
-                const conversation = await Conversation.findAll({
-                    where: {
-                        chatbotId:chatbotId
-                    }
-                })
-                return conversation;
-            }
-         catch (error) {
+            page = Number(page) || 1;
+            limit = Number(limit) || 3;
+            const conversation = await Conversation.findAll({
+                where: {
+                    chatbotId: chatbotId
+                },
+                limit: limit * 1,
+                offset: (page - 1) * limit
+            })
+            return conversation;
+        }
+        catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }

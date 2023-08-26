@@ -63,7 +63,6 @@ const get = async (req, res) => {
     }
 }
 
-// -> /User/:id -> req.body
 const update = async (req, res) => {
     try {
         const response = await userService.updateUser(req.params.id, req.body);
@@ -85,8 +84,7 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await userService.getAllUser();
-        console.log(req.query);
+        const cities = await userService.getAllUser(req.query);
         return res.status(200).json({
             data: cities,
             sucess: true,

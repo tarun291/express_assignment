@@ -1,4 +1,4 @@
-const  UserRepository  = require('../repository/user-repository');
+const UserRepository = require('../repository/user-repository');
 
 
 class UserService {
@@ -41,9 +41,9 @@ class UserService {
             throw { error };
         }
     }
-    async getAllUser() {
+    async getAllUser(query) {
         try {
-            const users = await this.userRepository.getAllUser();
+            const users = await this.userRepository.getAllUser(query?.page, query?.limit);
             return users;
         } catch (error) {
             console.log("Something went wrong in Service layer");

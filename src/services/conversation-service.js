@@ -5,10 +5,10 @@ class ConversationService {
     constructor() {
         this.conversationRepository = new ConversationRepository();
     }
-    async createConversation(chatbotId,data) {
+    async createConversation(chatbotId, data) {
         try {
             console.log(chatbotId, data);
-            const conversation = await this.conversationRepository.createConversation({...chatbotId,...data});
+            const conversation = await this.conversationRepository.createConversation({ ...chatbotId, ...data });
             return conversation;
         } catch (error) {
             console.log("Something went wrong in Service layer");
@@ -41,9 +41,9 @@ class ConversationService {
             throw { error };
         }
     }
-    async getAllConversation(chatbotId) {
+    async getAllConversation(chatbotId, query) {
         try {
-            const conversations = await this.conversationRepository.getAllConversation(chatbotId);
+            const conversations = await this.conversationRepository.getAllConversation(chatbotId, query?.page, query?.limit);
             return conversations;
         } catch (error) {
             console.log("Something went wrong in Service layer");

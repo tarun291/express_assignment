@@ -84,7 +84,7 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await conversationService.getAllConversation(req.params.chatbotId);
+        const cities = await conversationService.getAllConversation(req.params.chatbotId,req.query);
         console.log(req.query);
         return res.status(200).json({
             data: cities,

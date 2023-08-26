@@ -51,9 +51,14 @@ class UserRepository {
             throw { error };
         }
     }
-    async getAllUser() {
+    async getAllUser(page,limit) {
         try {
-            const user = await User.findAll();
+            page = Number(page) || 1;
+            limit = Number(limit) || 3;
+            const user = await User.findAll({
+                limit: limit * 1,
+                offset: (page - 1) * limit
+            });
             return user;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
