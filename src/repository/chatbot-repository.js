@@ -1,7 +1,7 @@
 const Chatbot = require('../models/chatbot')
 
 class ChatbotRepository {
-    async createChatbot(data) { //{name:"Agra"}
+    async createChatbot(data) {
         try {
             console.log(data)
             const chatbot = await Chatbot.create(data)
@@ -12,12 +12,12 @@ class ChatbotRepository {
         }
     }
 
-    async deleteChatbot(ChatbotId) {
-        console.log(ChatbotId);
+    async deleteChatbot(chatbotId) {
+        console.log(chatbotId);
         try {
             await Chatbot.destroy({
                 where: {
-                    id: ChatbotId
+                    chatbotId: chatbotId
                 }
             })
             return true;
@@ -27,51 +27,38 @@ class ChatbotRepository {
         }
     }
 
-    async updateChatbot(ChatbotId, data) {  //{name:"Delhi"} data is an object form here
+    async updateChatbot(chatbotId, data) {
         try {
-            // below approach also work but will not return updated obkject
-            // If you are using PG sequal then returning true can be used, else not
-            /* const Chatbot = await Chatbot.update(data, {
+            const chatbot = await Chatbot.update(data, {
                 where: {
-                    id: ChatbotId
+                    chatbotId: chatbotId
                 },
-             })*/
-            /* This approach will return apdated objct also in MySQL*/
-            const Chatbot = await Chatbot.findByPk(ChatbotId);
-            Chatbot.name = data.name;
-            await Chatbot.save();
-            return Chatbot;
+            })
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async getChatbot(ChatbotId) {
+
+    async getChatbot(chatbotId) {
         try {
-            const Chatbot = await Chatbot.findByPk(ChatbotId);
-            return Chatbot;
+            const chatbot = await Chatbot.findByPk(chatbotId);
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
-    async getAllChatbot(filter) { // filter can be a empty  also
+    async getAllChatbot(userId) {
         try {
-            if (filter.name) {
-                console.log(filter.name)
-                const cities = await Chatbot.findAll({
-                    where: {
-                        name: {
-                            [Op.startsWith]: filter.name
-                        }
-                    }
-                })
-                // console.log(cities);
-                return cities;
-            }
-            const cities = await Chatbot.findAll();
-            return cities;
+            const bots = await Chatbot.findAll({
+                where: {
+                    userId: userId
+                }
+            })
+            return bots;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };

@@ -5,45 +5,45 @@ class ChatbotService {
     constructor() {
         this.ChatbotRepository = new ChatbotRepository();
     }
-    async createChatbot(data) {
+    async createChatbot(userId,data) {
         try {
-            const chatbot = await this.ChatbotRepository.createChatbot(data);
+            const chatbot = await this.ChatbotRepository.createChatbot({...userId,...data});
             return chatbot;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async deleteChatbot(ChatbotId) {
+    async deleteChatbot(chatbotId) {
         try {
-            const response = this.ChatbotRepository.deleteChatbot(ChatbotId);
+            const response = this.ChatbotRepository.deleteChatbot(chatbotId);
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async updateChatbot(ChatbotId, data) {
+    async updateChatbot(chatbotId, data) {
         try {
-            const Chatbot = await this.ChatbotRepository.updateChatbot(ChatbotId, data);
-            return Chatbot;
+            const chatbot = await this.ChatbotRepository.updateChatbot(chatbotId, data);
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async getChatbot(ChatbotId) {
+    async getChatbot(chatbotId) {
         try {
-            const Chatbot = await this.ChatbotRepository.getChatbot(ChatbotId);
-            return Chatbot;
+            const chatbot = await this.ChatbotRepository.getChatbot(chatbotId);
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async getAllChatbot(filter) {
+    async getAllChatbot(userId) {
         try {
-            const cities = await this.ChatbotRepository.getAllChatbot({ name: filter.name });
-            return cities;
+            const bots = await this.ChatbotRepository.getAllChatbot(userId);
+            return bots;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
