@@ -1,12 +1,11 @@
 const Chatbot = require('../models/chatbot')
 
 class ChatbotRepository {
-    async createChatbot({ name }) { //{name:"Agra"}
+    async createChatbot(data) { //{name:"Agra"}
         try {
-            const Chatbot = await Chatbot.create({
-                name: name //name
-            })
-            return Chatbot;
+            console.log(data)
+            const chatbot = await Chatbot.create(data)
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };

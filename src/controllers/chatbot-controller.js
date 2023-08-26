@@ -1,11 +1,11 @@
 const ChatbotService = require('../services/chatbot-service');
 
 
-const ChatbotService = new ChatbotService();
+const chatbotService = new ChatbotService();
 
 const create = async (req, res) => {
     try {
-        const Chatbot = await ChatbotService.createChatbot(req.body);
+        const Chatbot = await chatbotService.createChatbot(req.body);
         return res.status(201).json({
             data: Chatbot,
             sucess: true,
@@ -26,7 +26,7 @@ const create = async (req, res) => {
 
 const destroy = async (req, res) => {
     try {
-        const response = await ChatbotService.deleteChatbot(req.params.id);
+        const response = await chatbotService.deleteChatbot(req.params.id);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -46,7 +46,7 @@ const destroy = async (req, res) => {
 // GET -> /Chatbot/:id
 const get = async (req, res) => {
     try {
-        const response = await ChatbotService.getChatbot(req.params.id);
+        const response = await chatbotService.getChatbot(req.params.id);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -67,7 +67,7 @@ const get = async (req, res) => {
 // -> /Chatbot/:id -> req.body
 const update = async (req, res) => {
     try {
-        const response = await ChatbotService.updateChatbot(req.params.id, req.body);
+        const response = await chatbotService.updateChatbot(req.params.id, req.body);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -86,7 +86,7 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await ChatbotService.getAllChatbot(req.query);
+        const cities = await chatbotService.getAllChatbot(req.query);
         console.log(req.query);
         return res.status(200).json({
             data: cities,

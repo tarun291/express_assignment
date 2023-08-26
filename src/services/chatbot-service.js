@@ -7,8 +7,8 @@ class ChatbotService {
     }
     async createChatbot(data) {
         try {
-            const Chatbot = await this.ChatbotRepository.createChatbot({ name: data.name });
-            return Chatbot;
+            const chatbot = await this.ChatbotRepository.createChatbot(data);
+            return chatbot;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
