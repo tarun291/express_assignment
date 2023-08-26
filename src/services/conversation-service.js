@@ -3,47 +3,48 @@ const ConversationRepository = require('../repository/conversation-repository');
 
 class ConversationService {
     constructor() {
-        this.ConversationRepository = new ConversationRepository();
+        this.conversationRepository = new ConversationRepository();
     }
-    async createConversation(data) {
+    async createConversation(chatbotId,data) {
         try {
-            const Conversation = await this.ConversationRepository.createConversation(data);
+            console.log(chatbotId, data);
+            const conversation = await this.conversationRepository.createConversation({...chatbotId,...data});
+            return conversation;
+        } catch (error) {
+            console.log("Something went wrong in Service layer");
+            throw { error };
+        }
+    }
+    async deleteConversation(conversationId) {
+        try {
+            const response = this.conversationRepository.deleteConversation(conversationId);
+        } catch (error) {
+            console.log("Something went wrong in Service layer");
+            throw { error };
+        }
+    }
+    async updateConversation(conversationId, data) {
+        try {
+            const Conversation = await this.conversationRepository.updateConversation(conversationId, data);
             return Conversation;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async deleteConversation(ConversationId) {
+    async getConversation(conversationId) {
         try {
-            const response = this.ConversationRepository.deleteConversation(ConversationId);
+            const conversation = await this.conversationRepository.getConversation(conversationId);
+            return conversation;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async updateConversation(ConversationId, data) {
+    async getAllConversation(chatbotId) {
         try {
-            const Conversation = await this.ConversationRepository.updateConversation(ConversationId, data);
-            return Conversation;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw { error };
-        }
-    }
-    async getConversation(ConversationId) {
-        try {
-            const Conversation = await this.ConversationRepository.getConversation(ConversationId);
-            return Conversation;
-        } catch (error) {
-            console.log("Something went wrong in Service layer");
-            throw { error };
-        }
-    }
-    async getAllConversation(filter) {
-        try {
-            const cities = await this.ConversationRepository.getAllConversation({ name: filter.name });
-            return cities;
+            const conversations = await this.conversationRepository.getAllConversation(chatbotId);
+            return conversations;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };

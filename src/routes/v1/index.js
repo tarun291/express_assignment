@@ -19,7 +19,7 @@ router.put('/chatbots/:chatbotId', ChatbotController.update);
 router.delete('/chatbots/:chatbotId', ChatbotController.destroy);
 
 
-router.post(' /chatbots/:chatbotId/conversations', ConversationController.create);
+router.post('/chatbots/:chatbotId/conversations', ConversationController.create);
 router.get('/chatbots/:chatbotId/conversations', ConversationController.getAll);
 router.get('/conversations/:conversationId', ConversationController.get);
 router.put('/conversations/:conversationId', ConversationController.update);

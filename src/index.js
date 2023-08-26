@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', ApiRoutes);
 
 app.listen(3000, () => {
-    sequelize.sync({force:true}).then(() => {
+    sequelize.sync().then(() => {
         console.log('db connected');
     })
     console.log('app is running');

@@ -5,9 +5,9 @@ const conversationService = new ConversationService();
 
 const create = async (req, res) => {
     try {
-        const Conversation = await conversationService.createConversation(req.body);
+        const conversation = await conversationService.createConversation(req.params,req.body);
         return res.status(201).json({
-            data: Conversation,
+            data: conversation,
             sucess: true,
             message: 'Successfully created a Conversation',
             err: {}
@@ -22,11 +22,11 @@ const create = async (req, res) => {
         })
     }
 }
-// DELETE -> /Conversation/:id
+
 
 const destroy = async (req, res) => {
     try {
-        const response = await conversationService.deleteConversation(req.params.id);
+        const response = await conversationService.deleteConversation(req.params.conversationId);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -43,10 +43,9 @@ const destroy = async (req, res) => {
         })
     }
 }
-// GET -> /Conversation/:id
 const get = async (req, res) => {
     try {
-        const response = await conversationService.getConversation(req.params.id);
+        const response = await conversationService.getConversation(req.params.conversationId);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -64,10 +63,9 @@ const get = async (req, res) => {
     }
 }
 
-// -> /Conversation/:id -> req.body
 const update = async (req, res) => {
     try {
-        const response = await conversationService.updateConversation(req.params.id, req.body);
+        const response = await conversationService.updateConversation(req.params.conversationId, req.body);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -86,7 +84,7 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await conversationService.getAllConversation(req.query);
+        const cities = await conversationService.getAllConversation(req.params.chatbotId);
         console.log(req.query);
         return res.status(200).json({
             data: cities,

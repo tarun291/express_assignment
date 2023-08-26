@@ -4,20 +4,20 @@ class ConversationRepository {
     async createConversation(data) { //{name:"Agra"}
         try {
             console.log(data)
-            const Conversation = await Conversation.create(data)
-            return Conversation;
+            const conversation = await Conversation.create(data)
+            return conversation;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async deleteConversation(ConversationId) {
-        console.log(ConversationId);
+    async deleteConversation(conversationId) {
+        console.log(conversationId);
         try {
             await Conversation.destroy({
                 where: {
-                    id: ConversationId
+                    conversationId: conversationId
                 }
             })
             return true;
@@ -27,52 +27,40 @@ class ConversationRepository {
         }
     }
 
-    async updateConversation(ConversationId, data) {  //{name:"Delhi"} data is an object form here
+    async updateConversation(conversationId, data) { 
         try {
-            // below approach also work but will not return updated obkject
-            // If you are using PG sequal then returning true can be used, else not
-            /* const Conversation = await Conversation.update(data, {
+           
+            const conversation = await Conversation.update(data, {
                 where: {
-                    id: ConversationId
+                    conversationId: conversationId
                 },
-             })*/
-            /* This approach will return apdated objct also in MySQL*/
-            const Conversation = await Conversation.findByPk(ConversationId);
-            Conversation.name = data.name;
-            await Conversation.save();
-            return Conversation;
+            })
+            return conversation;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async getConversation(ConversationId) {
+    async getConversation(conversationId) {
         try {
-            const Conversation = await Conversation.findByPk(ConversationId);
-            return Conversation;
+            const conversation = await Conversation.findByPk(conversationId);
+            return conversation;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
-    async getAllConversation(filter) { // filter can be a empty  also
+    async getAllConversation(chatbotId) { // filter can be a empty  also
         try {
-            if (filter.name) {
-                console.log(filter.name)
-                const cities = await Conversation.findAll({
+                const conversation = await Conversation.findAll({
                     where: {
-                        name: {
-                            [Op.startsWith]: filter.name
-                        }
+                        chatbotId:chatbotId
                     }
                 })
-                // console.log(cities);
-                return cities;
+                return conversation;
             }
-            const cities = await Conversation.findAll();
-            return cities;
-        } catch (error) {
+         catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
