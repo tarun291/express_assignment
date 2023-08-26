@@ -17,6 +17,8 @@ const User = sequelize.define('User', {
     // Other model options go here
 });
 
+
 module.exports = User;
+
 
 console.log(User === sequelize.models.User); // true
