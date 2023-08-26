@@ -12,4 +12,6 @@ const Conversation = sequelize.define('Chatbot', {
 });
 
 Conversation.belongsTo(Chatbot, { foreignKey: 'chatbotId', onDelete: 'SET NULL', onUpdate: 'CASCADE' })
-Chatbot.hasMany(Conversation,{foreignKey:'chatbotId'})
+Chatbot.hasMany(Conversation, { foreignKey: 'chatbotId' })
+
+module.exports = Conversation;
