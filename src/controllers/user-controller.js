@@ -22,7 +22,6 @@ const create = async (req, res) => {
         })
     }
 }
-// DELETE -> /User/:id
 
 const destroy = async (req, res) => {
     try {
@@ -43,7 +42,7 @@ const destroy = async (req, res) => {
         })
     }
 }
-// GET -> /User/:id
+
 const get = async (req, res) => {
     try {
         const response = await userService.getUser(req.params.id);
@@ -86,7 +85,7 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await userService.getAllUser(req.query);
+        const cities = await userService.getAllUser();
         console.log(req.query);
         return res.status(200).json({
             data: cities,
@@ -99,7 +98,7 @@ const getAll = async (req, res) => {
         return res.status(500).json({
             data: {},
             sucess: false,
-            message: 'Not able to fetch the cities',
+            message: 'Not able to fetch the users',
             err: error,
         })
     }

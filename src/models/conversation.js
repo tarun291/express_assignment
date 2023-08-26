@@ -1,5 +1,7 @@
-const Chatbot=require('./chatbot')
-const Conversation = sequelize.define('Chatbot', {
+const Chatbot = require('./chatbot')
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db/index');
+const Conversation = sequelize.define('Conversation', {
     conversationId: {
         type: DataTypes.INTEGER,
         primaryKey: true,

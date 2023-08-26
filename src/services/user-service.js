@@ -3,48 +3,48 @@ const  UserRepository  = require('../repository/user-repository');
 
 class UserService {
     constructor() {
-        this.UserRepository = new UserRepository();
+        this.userRepository = new UserRepository();
     }
     async createUser(data) {
         try {
             console.log(data)
-            const User = await this.UserRepository.createUser(data);
+            const User = await this.userRepository.createUser(data);
             return User;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async deleteUser(UserId) {
+    async deleteUser(userId) {
         try {
-            const response = this.UserRepository.deleteUser(UserId);
+            const response = this.userRepository.deleteUser(userId);
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async updateUser(UserId, data) {
+    async updateUser(userId, data) {
         try {
-            const User = await this.UserRepository.updateUser(UserId, data);
-            return User;
+            const user = await this.userRepository.updateUser(userId, data);
+            return user;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async getUser(UserId) {
+    async getUser(userId) {
         try {
-            const User = await this.UserRepository.getUser(UserId);
-            return User;
+            const user = await this.userRepository.getUser(userId);
+            return user;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async getAllUser(filter) {
+    async getAllUser() {
         try {
-            const cities = await this.UserRepository.getAllUser({ name: filter.name });
-            return cities;
+            const users = await this.userRepository.getAllUser();
+            return users;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };

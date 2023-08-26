@@ -1,6 +1,7 @@
 const User = require('../models/user')
+const { Op } = require('sequelize');
 class UserRepository {
-    async createUser(data) { 
+    async createUser(data) {
         try {
             console.log(data)
             const user = await User.create(
@@ -13,12 +14,12 @@ class UserRepository {
         }
     }
 
-    async deleteUser(UserId) {
-        console.log(UserId);
+    async deleteUser(userId) {
+        console.log(userId);
         try {
             await User.destroy({
                 where: {
-                    id: UserId
+                    userId: userId
                 }
             })
             return true;
@@ -28,51 +29,32 @@ class UserRepository {
         }
     }
 
-    async updateUser(UserId, data) {  //{name:"Delhi"} data is an object form here
+    async updateUser(userId, data) {
         try {
-            // below approach also work but will not return updated obkject
-            // If you are using PG sequal then returning true can be used, else not
-            /* const User = await User.update(data, {
+            return await User.update(data, {
                 where: {
-                    id: UserId
+                    userId: userId
                 },
-             })*/
-            /* This approach will return apdated objct also in MySQL*/
-            const User = await User.findByPk(UserId);
-            User.name = data.name;
-            await User.save();
-            return User;
+            })
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async getUser(UserId) {
+    async getUser(userId) {
         try {
-            const User = await User.findByPk(UserId);
-            return User;
+            const user = await User.findByPk(userId);
+            return user;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
-    async getAllUser(filter) { // filter can be a empty  also
+    async getAllUser() {
         try {
-            if (filter.name) {
-                console.log(filter.name)
-                const cities = await User.findAll({
-                    where: {
-                        name: {
-                            [Op.startsWith]: filter.name
-                        }
-                    }
-                })
-                // console.log(cities);
-                return cities;
-            }
-            const cities = await User.findAll();
-            return cities;
+            const user = await User.findAll();
+            return user;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };

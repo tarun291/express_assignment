@@ -8,9 +8,9 @@ const router = express.Router();
 
 router.post('/users', UserController.create);
 router.get('/users', UserController.getAll);
-router.get('/user/:id', UserController.get);
-router.put('/user/:id', UserController.update);
-router.delete('/user/:id', UserController.destroy);
+router.get('/users/:id', UserController.get);
+router.put('/users/:id', UserController.update);
+router.delete('/users/:id', UserController.destroy);
 
 router.post('/users/:userId/chatbots', ChatbotController.create);
 router.get('/users/:userId/chatbots', ChatbotController.getAll);

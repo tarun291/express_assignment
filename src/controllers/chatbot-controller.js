@@ -43,7 +43,6 @@ const destroy = async (req, res) => {
         })
     }
 }
-// GET -> /Chatbot/:id
 const get = async (req, res) => {
     try {
         const response = await chatbotService.getChatbot(req.params.id);
