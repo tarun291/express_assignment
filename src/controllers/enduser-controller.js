@@ -5,9 +5,9 @@ const endUserService = new EndUserService();
 
 const create = async (req, res) => {
     try {
-        const EndUser = await endUserService.createEndUser(req.body);
+        const endUser = await endUserService.createEndUser(req.body);
         return res.status(201).json({
-            data: EndUser,
+            data: endUser,
             sucess: true,
             message: 'Successfully created a EndUser',
             err: {}
@@ -22,11 +22,10 @@ const create = async (req, res) => {
         })
     }
 }
-// DELETE -> /EndUser/:id
 
 const destroy = async (req, res) => {
     try {
-        const response = await endUserService.deleteEndUser(req.params.id);
+        const response = await endUserService.deleteEndUser(req.params.endUserId);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -43,10 +42,9 @@ const destroy = async (req, res) => {
         })
     }
 }
-// GET -> /EndUser/:id
 const get = async (req, res) => {
     try {
-        const response = await endUserService.getEndUser(req.params.id);
+        const response = await endUserService.getEndUser(req.params.endUserId);
         return res.status(200).json({
             data: response,
             sucess: true,
@@ -64,10 +62,10 @@ const get = async (req, res) => {
     }
 }
 
-// -> /EndUser/:id -> req.body
+
 const update = async (req, res) => {
     try {
-        const response = await endUserService.updateEndUser(req.params.id, req.body);
+        const response = await endUserService.updateEndUser(req.params.endUserId, req.body);
         return res.status(200).json({
             data: response,
             sucess: true,

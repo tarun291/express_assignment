@@ -51,12 +51,16 @@ class ChatbotRepository {
             throw { error };
         }
     }
-    async getAllChatbot(userId) {
+    async getAllChatbot(userId,page,limit) {
         try {
+            page = Number(page) || 1; 
+            limit = Number(limit) || 3;
             const bots = await Chatbot.findAll({
                 where: {
                     userId: userId
-                }
+                },
+                limit: limit*1,
+                offset: (page-1)*limit
             })
             return bots;
         } catch (error) {

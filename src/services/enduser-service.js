@@ -3,38 +3,38 @@ const EndUserRepository = require('../repository/enduser-repository');
 
 class EndUserService {
     constructor() {
-        this.EndUserRepository = new EndUserRepository();
+        this.endUserRepository = new EndUserRepository();
     }
     async createEndUser(data) {
         try {
-            const EndUser = await this.EndUserRepository.createEndUser(data);
-            return EndUser;
+            const endUser = await this.endUserRepository.createEnduser(data);
+            return endUser;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async deleteEndUser(EndUserId) {
+    async deleteEndUser(endUserId) {
         try {
-            const response = this.EndUserRepository.deleteEndUser(EndUserId);
+            const response = await this.endUserRepository.deleteEnduser(endUserId);
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async updateEndUser(EndUserId, data) {
+    async updateEndUser(endUserId, data) {
         try {
-            const EndUser = await this.EndUserRepository.updateEndUser(EndUserId, data);
-            return EndUser;
+            const endUser = await this.endUserRepository.updateEnduser(endUserId, data);
+            return endUser;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
         }
     }
-    async getEndUser(EndUserId) {
+    async getEndUser(endUserId) {
         try {
-            const EndUser = await this.EndUserRepository.getEndUser(EndUserId);
-            return EndUser;
+            const endUser = await this.endUserRepository.getEnduser(endUserId);
+            return endUser;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };
@@ -42,7 +42,7 @@ class EndUserService {
     }
     async getAllEndUser(filter) {
         try {
-            const cities = await this.EndUserRepository.getAllEndUser({ name: filter.name });
+            const cities = await this.endUserRepository.getAllEnduser({ name: filter.name });
             return cities;
         } catch (error) {
             console.log("Something went wrong in Service layer");

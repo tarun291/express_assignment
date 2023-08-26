@@ -40,9 +40,10 @@ class ChatbotService {
             throw { error };
         }
     }
-    async getAllChatbot(userId) {
+    async getAllChatbot(userId,query) {
         try {
-            const bots = await this.ChatbotRepository.getAllChatbot(userId);
+            // console.log(pages);
+            const bots = await this.ChatbotRepository.getAllChatbot(userId,query?.page,query?.limit);
             return bots;
         } catch (error) {
             console.log("Something went wrong in Service layer");

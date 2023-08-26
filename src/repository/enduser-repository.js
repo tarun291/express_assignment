@@ -1,23 +1,21 @@
 const Enduser = require('../models/enduser')
 
 class EnduserRepository {
-    async createEnduser(data) { //{name:"Agra"}
+    async createEnduser(data) { 
         try {
-            console.log(data)
-            const Enduser = await Enduser.create(data)
-            return Enduser;
+            const enduser = await Enduser.create(data)
+            return enduser;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async deleteEnduser(EnduserId) {
-        console.log(EnduserId);
+    async deleteEnduser(enduserId) {
         try {
             await Enduser.destroy({
                 where: {
-                    id: EnduserId
+                    enduserId: enduserId
                 }
             })
             return true;
@@ -27,36 +25,32 @@ class EnduserRepository {
         }
     }
 
-    async updateEnduser(EnduserId, data) {  //{name:"Delhi"} data is an object form here
+    async updateEnduser(enduserId, data) { 
         try {
-            // below approach also work but will not return updated obkject
-            // If you are using PG sequal then returning true can be used, else not
-            /* const Enduser = await Enduser.update(data, {
+            const enduser = await Enduser.update(data, {
                 where: {
-                    id: EnduserId
+                    enduserId: enduserId
                 },
-             })*/
-            /* This approach will return apdated objct also in MySQL*/
-            const Enduser = await Enduser.findByPk(EnduserId);
-            Enduser.name = data.name;
-            await Enduser.save();
-            return Enduser;
+             })
+            return enduser;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
 
-    async getEnduser(EnduserId) {
+    async getEnduser(enduserId) {
         try {
-            const Enduser = await Enduser.findByPk(EnduserId);
-            return Enduser;
+            const enduser = await Enduser.findByPk(enduserId);
+            return enduser;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
         }
     }
-    async getAllEnduser(filter) { // filter can be a empty  also
+
+
+    async getAllEnduser(filter) {
         try {
             if (filter.name) {
                 console.log(filter.name)
@@ -67,7 +61,6 @@ class EnduserRepository {
                         }
                     }
                 })
-                // console.log(cities);
                 return cities;
             }
             const cities = await Enduser.findAll();
