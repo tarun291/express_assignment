@@ -50,9 +50,14 @@ class EnduserRepository {
     }
 
 
-    async getAllEnduser() {
+    async getAllEnduser(page,limit) {
         try {
-            const endusers = await Enduser.findAll();
+            page = Number(page) || 1;
+            limit = Number(limit) || 3;
+            const endusers = await Enduser.findAll({
+                limit: limit * 1,
+                offset: (page - 1) * limit
+            });
             return endusers;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");

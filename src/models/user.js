@@ -14,7 +14,6 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING
     }
 }, {
-    // Other model options go here
 });
 
 

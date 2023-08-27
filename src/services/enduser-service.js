@@ -40,9 +40,9 @@ class EndUserService {
             throw { error };
         }
     }
-    async getAllEndUser() {
+    async getAllEndUser(query) {
         try {
-            const endusers = await this.endUserRepository.getAllEnduser();
+            const endusers = await this.endUserRepository.getAllEnduser(query?.page, query?.limit);
             return endusers;
         } catch (error) {
             console.log("Something went wrong in Service layer");
