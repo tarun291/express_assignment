@@ -96,7 +96,7 @@ const getAll = async (req, res) => {
         return res.status(500).json({
             data: {},
             sucess: false,
-            message: 'Not able to fetch the cities',
+            message: 'Not able to fetch the chatbot',
             err: error,
         })
     }
@@ -117,7 +117,7 @@ const serchBots = async (req, res) => {
         return res.status(500).json({
             data: {},
             sucess: false,
-            message: 'Not able to fetch the cities',
+            message: 'Not able to fetch the chatbot',
             err: error
         })
     }

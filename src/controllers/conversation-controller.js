@@ -84,9 +84,9 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await conversationService.getAllConversation(req.params.chatbotId,req.query);
+        const conversation = await conversationService.getAllConversation(req.params.chatbotId,req.query);
         return res.status(200).json({
-            data: cities,
+            data: conversation,
             sucess: true,
             message: 'All Conversation fetched sucessfully ',
             err: {},
@@ -96,7 +96,7 @@ const getAll = async (req, res) => {
         return res.status(500).json({
             data: {},
             sucess: false,
-            message: 'Not able to fetch the cities',
+            message: 'Not able to fetch the conversation',
             err: error,
         })
     }
