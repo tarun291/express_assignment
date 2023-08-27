@@ -11,6 +11,10 @@ const Conversation = sequelize.define('Conversation', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    isCompleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false 
+    }
 });
 
 Conversation.belongsTo(Chatbot, { foreignKey: 'chatbotId', onDelete: 'SET NULL', onUpdate: 'CASCADE' })

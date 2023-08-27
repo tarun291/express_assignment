@@ -7,7 +7,6 @@ class ConversationService {
     }
     async createConversation(chatbotId, data) {
         try {
-            console.log(chatbotId, data);
             const conversation = await this.conversationRepository.createConversation({ ...chatbotId, ...data });
             return conversation;
         } catch (error) {
