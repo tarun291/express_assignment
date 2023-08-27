@@ -1,8 +1,8 @@
-## Clone the repository:
+### Clone the repository:
   - git clone https://github.com/your-username/express-assignment.git
-## Navigate to the project directory:
+### Navigate to the project directory:
   - cd express-assignment
-# Install dependencies:
+### Install dependencies:
   - npm install
-# Start server
+### Start server
   - npm start
