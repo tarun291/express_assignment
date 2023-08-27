@@ -3,7 +3,6 @@ const { Op } = require('sequelize');
 class UserRepository {
     async createUser(data) {
         try {
-            console.log(data)
             const user = await User.create(
                 data
             )
@@ -15,7 +14,6 @@ class UserRepository {
     }
 
     async deleteUser(userId) {
-        console.log(userId);
         try {
             await User.destroy({
                 where: {

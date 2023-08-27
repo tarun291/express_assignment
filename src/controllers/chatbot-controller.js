@@ -4,7 +4,6 @@ const ChatbotService = require('../services/chatbot-service');
 const chatbotService = new ChatbotService();
 
 const create = async (req, res) => {
-    console.log(req.params)
     try {
         const Chatbot = await chatbotService.createChatbot(req.params,req.body);
         return res.status(201).json({

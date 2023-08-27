@@ -1,9 +1,8 @@
 const Conversation = require('../models/conversation')
 
 class ConversationRepository {
-    async createConversation(data) { //{name:"Agra"}
+    async createConversation(data) { 
         try {
-            console.log(data)
             const conversation = await Conversation.create(data)
             return conversation;
         } catch (error) {
@@ -13,7 +12,6 @@ class ConversationRepository {
     }
 
     async deleteConversation(conversationId) {
-        console.log(conversationId);
         try {
             await Conversation.destroy({
                 where: {

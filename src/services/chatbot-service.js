@@ -42,7 +42,6 @@ class ChatbotService {
     }
     async getAllChatbot(userId,query) {
         try {
-            // console.log(pages);
             const bots = await this.ChatbotRepository.getAllChatbot(userId,query?.page,query?.limit);
             return bots;
         } catch (error) {

@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', ApiRoutes);
 const PORT = 3000;
 app.listen(PORT, () => {
-    sequelize.sync().then(() => {
+    sequelize.sync({force:true}).then(() => {
         console.log('DB connected');
     })
-    console.log(`App is running on PORT ${PORT}`);
+    console.log(`Server is running on PORT ${PORT}`);
 })

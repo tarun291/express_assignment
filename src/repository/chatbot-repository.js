@@ -3,7 +3,6 @@ const { Op } = require('sequelize');
 class ChatbotRepository {
     async createChatbot(data) {
         try {
-            console.log(data)
             const chatbot = await Chatbot.create(data)
             return chatbot;
         } catch (error) {
@@ -13,7 +12,6 @@ class ChatbotRepository {
     }
 
     async deleteChatbot(chatbotId) {
-        console.log(chatbotId);
         try {
             await Chatbot.destroy({
                 where: {
