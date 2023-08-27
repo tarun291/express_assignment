@@ -70,14 +70,17 @@ class ChatbotRepository {
     }
     async searchBot(filter) {
         try {
-            const bots = await Chatbot.findAll({
-                where: {
-                    name: {
-                        [Op.startsWith]:filter.name
+            if(filter.name){
+                const bots = await Chatbot.findAll({
+                    where: {
+                        name: {
+                            [Op.startsWith]: filter.name
+                        }
                     }
-                }
-            })
-            return bots;
+                })
+                return bots;
+            } 
+            return await Chatbot.findAll();
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };
