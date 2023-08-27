@@ -52,12 +52,16 @@ class EnduserRepository {
 
     async getAllEnduser(page,limit) {
         try {
-            page = Number(page) || 1;
-            limit = Number(limit) || 3;
-            const endusers = await Enduser.findAll({
-                limit: limit * 1,
-                offset: (page - 1) * limit
-            });
+            if (page) {
+                page = Number(page) || 1;
+                limit = Number(limit) || 3;
+                const endusers = await Enduser.findAll({
+                    limit: limit * 1,
+                    offset: (page - 1) * limit
+                });
+                return endusers;
+            }
+            const endusers = await Enduser.findAll();
             return endusers;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");

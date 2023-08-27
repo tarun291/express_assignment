@@ -51,14 +51,22 @@ class ConversationRepository {
     }
     async getAllConversation(chatbotId, page, limit) {
         try {
-            page = Number(page) || 1;
-            limit = Number(limit) || 3;
+            if (page) {
+                page = Number(page) || 1;
+                limit = Number(limit) || 3;
+                const conversation = await Conversation.findAll({
+                    where: {
+                        chatbotId: chatbotId
+                    },
+                    limit: limit * 1,
+                    offset: (page - 1) * limit
+                })
+                return conversation;
+            }
             const conversation = await Conversation.findAll({
                 where: {
                     chatbotId: chatbotId
-                },
-                limit: limit * 1,
-                offset: (page - 1) * limit
+                }
             })
             return conversation;
         }
