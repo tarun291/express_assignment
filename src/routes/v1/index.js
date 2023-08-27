@@ -29,7 +29,7 @@ router.delete('/conversations/:conversationId', ConversationController.destroy);
 router.post('/endusers', EndUserController.create);
 router.get('/endusers', EndUserController.getAll);
 router.get('/endusers/:endUserId', EndUserController.get);
-router.put('/endusers/:endUserId ', EndUserController.update);
+router.put('/endusers/:endUserId', EndUserController.update);
 router.delete('/endusers/:endUserId', EndUserController.destroy);
 
 

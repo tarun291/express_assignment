@@ -15,7 +15,7 @@ class EnduserRepository {
         try {
             await Enduser.destroy({
                 where: {
-                    enduserId: enduserId
+                    id: enduserId
                 }
             })
             return true;
@@ -29,7 +29,7 @@ class EnduserRepository {
         try {
             const enduser = await Enduser.update(data, {
                 where: {
-                    enduserId: enduserId
+                    id: enduserId
                 },
              })
             return enduser;
@@ -50,21 +50,10 @@ class EnduserRepository {
     }
 
 
-    async getAllEnduser(filter) {
+    async getAllEnduser() {
         try {
-            if (filter.name) {
-                console.log(filter.name)
-                const cities = await Enduser.findAll({
-                    where: {
-                        name: {
-                            [Op.startsWith]: filter.name
-                        }
-                    }
-                })
-                return cities;
-            }
-            const cities = await Enduser.findAll();
-            return cities;
+            const endusers = await Enduser.findAll();
+            return endusers;
         } catch (error) {
             console.log("Something went wrong in Repository Layer");
             throw { error };

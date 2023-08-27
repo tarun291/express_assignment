@@ -6,10 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', ApiRoutes);
-
-app.listen(3000, () => {
+const PORT = 3000;
+app.listen(PORT, () => {
     sequelize.sync().then(() => {
-        console.log('db connected');
+        console.log('DB connected');
     })
-    console.log('app is running');
+    console.log(`App is running on PORT ${PORT}`);
 })

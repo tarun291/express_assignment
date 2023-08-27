@@ -40,10 +40,10 @@ class EndUserService {
             throw { error };
         }
     }
-    async getAllEndUser(filter) {
+    async getAllEndUser() {
         try {
-            const cities = await this.endUserRepository.getAllEnduser({ name: filter.name });
-            return cities;
+            const endusers = await this.endUserRepository.getAllEnduser();
+            return endusers;
         } catch (error) {
             console.log("Something went wrong in Service layer");
             throw { error };

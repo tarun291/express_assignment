@@ -84,10 +84,9 @@ const update = async (req, res) => {
 }
 const getAll = async (req, res) => {
     try {
-        const cities = await endUserService.getAllEndUser(req.query);
-        console.log(req.query);
+        const endusers = await endUserService.getAllEndUser(req.query)
         return res.status(200).json({
-            data: cities,
+            data: endusers,
             sucess: true,
             message: 'All EndUser fetched sucessfully ',
             err: {},
