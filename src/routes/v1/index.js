@@ -17,6 +17,7 @@ router.get('/users/:userId/chatbots', ChatbotController.getAll);
 router.get('/chatbots/:chatbotId', ChatbotController.get);
 router.put('/chatbots/:chatbotId', ChatbotController.update);
 router.delete('/chatbots/:chatbotId', ChatbotController.destroy);
+router.get('/chatbots', ChatbotController.serchBots);
 
 
 router.post('/chatbots/:chatbotId/conversations', ConversationController.create);
@@ -31,8 +32,6 @@ router.get('/endusers', EndUserController.getAll);
 router.get('/endusers/:endUserId', EndUserController.get);
 router.put('/endusers/:endUserId', EndUserController.update);
 router.delete('/endusers/:endUserId', EndUserController.destroy);
-
-
 
 
 

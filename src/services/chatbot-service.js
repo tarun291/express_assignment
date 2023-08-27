@@ -50,6 +50,15 @@ class ChatbotService {
             throw { error };
         }
     }
+    async serchBots(query) {
+        try {
+            const bots = await this.ChatbotRepository.searchBot(query);
+            return bots;
+        } catch (error) {
+            console.log("Something went wrong in Service layer");
+            throw { error };
+        }
+    }
 }
 
 module.exports = ChatbotService;

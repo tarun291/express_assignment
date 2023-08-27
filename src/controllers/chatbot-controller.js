@@ -82,11 +82,12 @@ const update = async (req, res) => {
         })
     }
 }
+
 const getAll = async (req, res) => {
     try {
-        const cities = await chatbotService.getAllChatbot(req.params.userId,req.query);
+        const bots = await chatbotService.getAllChatbot(req.params.userId,req.query);
         return res.status(200).json({
-            data: cities,
+            data: bots,
             sucess: true,
             message: 'All Chatbot fetched sucessfully ',
             err: {},
@@ -101,10 +102,34 @@ const getAll = async (req, res) => {
         })
     }
 }
+
+const serchBots = async (req, res) => {
+    try {
+        const bots = await chatbotService.serchBots(req.query);
+        return res.status(200).json({
+            data: bots,
+            sucess: true,
+            message: 'All Chatbot fetched sucessfully ',
+            err: {},
+        })
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            sucess: false,
+            message: 'Not able to fetch the cities',
+            err: error
+        })
+    }
+}
+
+
 module.exports = {
     create,
     destroy,
     get,
     update,
-    getAll
+    getAll,
+    serchBots
 }

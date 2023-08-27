@@ -1,5 +1,5 @@
 const Chatbot = require('../models/chatbot')
-
+const { Op } = require('sequelize');
 class ChatbotRepository {
     async createChatbot(data) {
         try {
@@ -61,6 +61,21 @@ class ChatbotRepository {
                 },
                 limit: limit*1,
                 offset: (page-1)*limit
+            })
+            return bots;
+        } catch (error) {
+            console.log("Something went wrong in Repository Layer");
+            throw { error };
+        }
+    }
+    async searchBot(filter) {
+        try {
+            const bots = await Chatbot.findAll({
+                where: {
+                    name: {
+                        [Op.startsWith]:filter.name
+                    }
+                }
             })
             return bots;
         } catch (error) {
